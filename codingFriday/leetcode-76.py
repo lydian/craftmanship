@@ -39,7 +39,7 @@ def minWindow(S, T):
             if compare(required, current):
                 if result == "":
                     result = S[start:end+1]
-                while start <=end:
+                while start <= end:
                     if S[start] in current and current[S[start]] <= required[S[start]]: break
                     if(S[start] in current): current[S[start]] -= 1
                     start += 1
@@ -57,4 +57,13 @@ class Test(unittest.TestCase):
             result = minWindow(S,T)
             self.assertEqual(expected, minWindow(S,T))
         
+    def testLarge(self):
+        f = open("tests/leetcode-76.data.large")
+        for line in f:
+            if line.strip() == "": continue
+            S,T = [string.strip().replace("\"","") for string in line.split(",") if string.strip() != ""]
+            
+            print minWindow(S, T)
+
+
 unittest.main()
